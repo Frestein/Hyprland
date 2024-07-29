@@ -79,7 +79,7 @@ case $command in "Instant")
     --config="$hypr_dir/fuzzel/fuzzel.ini")
   command=$(echo "$selected_option" | grep -o -E '[a-zA-Z]+')
 
-  sleep 0.1
+  sleep 0.5
 
   case $command in
   "Trim")
