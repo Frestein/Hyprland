@@ -11,7 +11,7 @@ run_command() {
     hyprctl kill
     ;;
   "Lock")
-    swaylock -C "$dir/swaylock/swaylock.conf"
+    hyprlock
     ;;
   "Reload")
     hyprctl reload
