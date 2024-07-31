@@ -1,10 +1,10 @@
-# vim:ft=dosini
 # Global Config --------------------------------------------
 format=%s\n%b
 default-timeout=5000
+
 # Style Options --------------------------------------------
 font=Maple Mono 10
-background-color=#2E3440FF
+background-color=#2E3440CC
 text-color=#D8DEE9FF
 border-color=#81A1C1FF
 margin=25
@@ -25,3 +25,5 @@ default-timeout=0
 background-color=#2E3440FF
 text-color=#BF616AFF
 border-color=#BF616AFF
+
+# vim:ft=dosini
