@@ -38,7 +38,7 @@ ENV = os.environ.copy()
 ENC = locale.getpreferredencoding()
 
 CONF = configparser.ConfigParser()
-CONF.read(expanduser("~/.config/river/scripts/networkmanager.ini"))
+CONF.read(expanduser("~/.config/hypr/scripts/networkmanager.ini"))
 
 
 def cli_args():
