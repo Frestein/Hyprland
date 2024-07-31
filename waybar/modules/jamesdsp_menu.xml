@@ -1,0 +1,16 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkMenu" id="menu">
+    <child>
+      <object class="GtkMenuItem" id="default">
+        <property name="label">Default</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="main">
+        <property name="label">Main</property>
+      </object>
+    </child>
+  </object>
+</interface>

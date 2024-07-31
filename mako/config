@@ -1,16 +1,19 @@
 # vim:ft=dosini
-font=JetBrainsMono Nerd font 10
+# Global Config --------------------------------------------
+format=%s\n%b
+default-timeout=5000
+# Style Options --------------------------------------------
+font=Maple Mono 10
 background-color=#2E3440FF
 text-color=#D8DEE9FF
+border-color=#81A1C1FF
 margin=25
 padding=15
 border-size=2
 border-radius=10
-border-color=#81A1C1FF
 max-icon-size=48
-format=%s\n%b
-default-timeout=5000
 
+# Urgency Options ------------------------------------------
 [urgency=low]
 default-timeout=2000
 

@@ -1,13 +1,13 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-family: Maple Mono, FontAwesome, JetBrainsMono Nerd Font, Roboto, Helvetica, Arial, sans-serif;
   font-size: 13px;
 }
 
 window#waybar {
   background-color: rgba(43, 48, 59, 0.5);
   border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-  color: #ffffff;
+  color: #d8dee9;
   transition-property: background-color;
   transition-duration: 0.5s;
 }
@@ -325,4 +325,11 @@ label:focus {
 
 #privacy-item.audio-out {
   background-color: #0069d4;
+}
+
+tooltip {
+    color: #d8dee9;
+    background-color: #2e3440;
+    text-shadow: none;
+    border: solid 2px #4c566a;
 }
