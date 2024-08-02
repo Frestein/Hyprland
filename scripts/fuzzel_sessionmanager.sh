@@ -7,11 +7,11 @@ run_command() {
   "Logout")
     hyprctl dispatch exit
     ;;
-  "Kill")
-    hyprctl kill
-    ;;
   "Lock")
     hyprlock
+    ;;
+  "Kill")
+    hyprctl kill
     ;;
   "Reload")
     hyprctl reload
@@ -26,7 +26,7 @@ run_command() {
   esac
 }
 
-options=$(echo "󰍃 Logout\n Kill\n Lock\n Reload\n Reboot\n Shutdown")
+options=$(echo "󰗽 Logout\n Lock\n󰯈 Kill window\n Reload\n Reboot\n Shutdown")
 selected_option=$(echo "$options" | fuzzel -d \
   -l 6 \
   -p "Session " \
