@@ -11,7 +11,7 @@
 
 fuzzel_opts="-d --config $HOME/.config/hypr/fuzzel/fuzzel.ini"
 
-error_notify() {
+send_notify() {
   local message="$1"
   echo "$message"
   notify-send -u low -h string:x-dunst-stack-tag:downloader "$message"
@@ -19,19 +19,19 @@ error_notify() {
 
 # Check for required commands
 command -v wl-paste >/dev/null || {
-  error_notify "Error: wl-clipboard is not installed."
+  send_notify "Error: wl-clipboard is not installed."
   exit 1
 }
 command -v yt-dlp >/dev/null || {
-  error_notify "Error: yt-dlp is not installed."
+  send_notify "Error: yt-dlp is not installed."
   exit 1
 }
 command -v aria2c >/dev/null || {
-  error_notify "Error: aria2 is not installed."
+  send_notify "Error: aria2 is not installed."
   exit 1
 }
 command -v fuzzel >/dev/null || {
-  error_notify "Error: fuzzel is not installed."
+  send_notify "Error: fuzzel is not installed."
   exit 1
 }
 
@@ -44,14 +44,19 @@ fi
 
 # Check if link is empty
 if [ -z "$link" ]; then
-  error_notify "Error: No link provided. Please provide a link as an argument or copy it to the clipboard."
+  send_notify "Error: No link provided. Please provide a link as an argument or copy it to the clipboard."
   exit 1
 fi
 
-# Validate if the link is a valid URL
-if ! echo "$link" | grep -qE '^(http|https)://'; then
-  error_notify "Error: The provided input is not a valid URL."
-  exit 1
+# Validate if the link is a valid URL or a magnet link
+if ! echo "$link" | grep -qE '^(http|https)://|^magnet:'; then
+  # Additional check for absolute path to the torrent file
+  if [ ! -f "$link" ]; then
+    send_notify "Error: The provided input is not a valid URL, magnet link, or file path."
+    exit 1
+  fi
+else
+  echo "The provided input is a valid URL or magnet link."
 fi
 
 echo "Link: $link"
@@ -66,7 +71,7 @@ if [ -z "$2" ]; then
     create_directory_option=$(printf "No\nYes" | fuzzel -p "$dir does not exist. Create it? " -l 2 $fuzzel_opts)
     if [ "$create_directory_option" = "Yes" ]; then
       mkdir -p "$dir" || {
-        error_notify "Error: Failed to create directory '$dir'."
+        send_notify "Error: Failed to create directory '$dir'."
         exit 1
       }
     fi
@@ -78,7 +83,7 @@ fi
 [ -z "$dir" ] && exit 1
 echo "Directory: $dir"
 cd "$dir" || {
-  error_notify "Error: Failed to change directory to '$dir'."
+  send_notify "Error: Failed to change directory to '$dir'."
   exit 1
 }
 
@@ -91,17 +96,15 @@ if [ $? -eq 0 ]; then
   echo "Downloader: Youtube-dl"
   type=$(echo "Video\nAudio" | fuzzel -p "Download Type: " -l 2 $fuzzel_opts)
   if [ "$type" = "Video" ]; then
-    echo "Downloading Video"
+    send_notify "Starting video download..."
     file=$(yt-dlp -ic --add-metadata "$link" --abort-on-error --external-downloader aria2c --external-downloader-args "-x 16 -s 16 -k 1M" -o "%(title)s.%(ext)s" --get-filename --no-simulate)
   elif [ "$type" = "Audio" ]; then
-    echo "Downloading Audio"
+    send_notify "Starting audio download..."
     file=$(yt-dlp -xic --add-metadata "$link" --abort-on-error --external-downloader aria2c --external-downloader-args "-x 16 -s 16 -k 1M" -o "%(title)s.%(ext)s" --get-filename --no-simulate)
   fi
 else
-  echo "Downloader: Aria2c"
-  if command -v aria2c >/dev/null; then
-    aria2c "$link" -x 16 -s 16 -k 1M
-  fi
+  send_notify "Starting download..."
+  aria2c "$link" -x 16 -s 16 -k 1M --seed-time 0 
 fi
 
 # Notify if download was successful
@@ -109,7 +112,5 @@ if [ -z "$file" ]; then
   notify-send "Error: No file was downloaded."
 elif [ -e "$dir/$file" ] && [ -s "$dir/$file" ]; then
   notify-send "Download completed: '$file'."
-else
-  notify-send "Download aborted."
 fi
 exit 0
