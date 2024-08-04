@@ -175,7 +175,7 @@
       "logout": "hyprctl dispatch exit",
       "lock": "hyprlock",
       "kill": "hyprctl kill",
-      "reload": "hyprctl reload | notify-send -u low -h string:x-dunst-stack-tag:screenshot -i /usr/share/archcraft/icons/dunst/picture.png 'Config reloaded' ",
+      "reload": "hyprctl reload && pkill -SIGUSR2 waybar && notify-send -u low -h string:x-dunst-stack-tag:hypr-reload 'Config reloaded'",
       "reboot": "systemctl reboot",
       //"suspend": "systemctl suspend",
       //"hibernate": "systemctl hibernate",

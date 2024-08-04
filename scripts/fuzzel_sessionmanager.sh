@@ -15,7 +15,8 @@ run_command() {
     ;;
   "Reload")
     hyprctl reload
-    notify-send -u low -h string:x-dunst-stack-tag:screenshot -i /usr/share/archcraft/icons/dunst/picture.png "Config reloaded"
+    pkill -SIGUSR2 waybar
+    notify-send -u low -h string:x-dunst-stack-tag:screenshot "Config reloaded"
     ;;
   "Reboot")
     systemctl reboot
