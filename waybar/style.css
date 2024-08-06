@@ -1,6 +1,13 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: Maple Mono, FontAwesome, JetBrainsMono Nerd Font, Roboto, Helvetica, Arial, sans-serif;
+  font-family:
+    Maple Mono,
+    FontAwesome,
+    JetBrainsMono Nerd Font,
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
   font-size: 13px;
 }
 
@@ -194,15 +201,15 @@ button:hover {
 }
 
 /*#mpd.disconnected {*/
-  /*background-color: #f53c3c;*/
+/*background-color: #f53c3c;*/
 /*}*/
 
 /*#mpd.stopped {*/
-  /*background-color: #90b1b1;*/
+/*background-color: #90b1b1;*/
 /*}*/
 
 /*#mpd.paused {*/
-  /*background-color: #51a37a;*/
+/*background-color: #51a37a;*/
 /*}*/
 
 #language {
@@ -243,8 +250,8 @@ button:hover {
 }
 
 tooltip {
-    color: #d8dee9;
-    background-color: #2e3440;
-    text-shadow: none;
-    border: solid 2px #4c566a;
+  color: #d8dee9;
+  background-color: #2e3440;
+  text-shadow: none;
+  border: solid 2px #4c566a;
 }
