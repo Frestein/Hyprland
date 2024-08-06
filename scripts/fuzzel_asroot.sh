@@ -5,13 +5,13 @@ dir="$HOME/.config/hypr"
 run_command() {
   case "$1" in
   "Foot")
-    "$dir/scripts/asroot.sh" foot -c "$dir/foot/foot.ini"
+    "$dir/scripts/asroot.sh" foot -ec "$dir/foot/foot.ini"
     ;;
   "Neovim")
-    "$dir/scripts/asroot.sh" foot -c "$dir/foot/foot.ini" nvim
+    "$dir/scripts/asroot.sh" foot -ec "$dir/foot/foot.ini" nvim
     ;;
   "Yazi")
-    "$dir/scripts/asroot.sh" foot -c "$dir/foot/foot.ini" yazi
+    "$dir/scripts/asroot.sh" foot -ec "$dir/foot/foot.ini" yazi
     ;;
   "Nemo")
     "$dir/scripts/asroot.sh" HOME=/home/frestein nemo
