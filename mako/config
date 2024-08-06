@@ -4,7 +4,7 @@ default-timeout=5000
 
 # Style Options --------------------------------------------
 font=Maple Mono 10
-background-color=#2E3440CC
+background-color=#2E3440E6
 text-color=#D8DEE9FF
 border-color=#81A1C1FF
 margin=25
