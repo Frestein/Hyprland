@@ -144,6 +144,7 @@ case $command in "Instant")
   # Check if countdown_time is a number and greater than 0
   if echo "$countdown_time" | grep -qE '^[0-9]+$' && [ "$countdown_time" -gt 0 ]; then
     countdown "$countdown_time"
+    sleep 0.5
     flameshot gui -r | copy_shot
     notify_view
   else
