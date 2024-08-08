@@ -1,7 +1,9 @@
 #!/bin/dash
 
 config="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-3.0/settings.ini"
-if [ ! -f "$config" ]; then exit 1; fi
+if [ ! -f "$config" ]; then
+  exit 1
+fi
 
 gnome_schema="org.gnome.desktop.interface"
 icon_theme="$(grep 'gtk-icon-theme-name' "$config" | sed 's/.*\s*=\s*//')"

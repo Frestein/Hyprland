@@ -234,7 +234,7 @@ def rescan_wifi():
     """
     delay = CONF.getint("nmdm", "rescan_delay", fallback=5)
     for dev in CLIENT.get_devices():
-        if gi.repository.NM.DeviceWifi == type(dev):
+        if gi.repository.NM.DeviceWifi is type(dev):
             try:
                 dev.request_scan_async(None, rescan_cb, None)
                 LOOP.run()

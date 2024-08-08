@@ -14,16 +14,16 @@ run_command() {
     "$dir/scripts/asroot.sh" foot -ec "$dir/foot/foot.ini" yazi
     ;;
   "Nemo")
-    "$dir/scripts/asroot.sh" HOME=/home/frestein nemo
+    "$dir/scripts/asroot.sh" HOME="$HOME" nemo
     ;;
   esac
 }
 
-options=$(echo " Foot\n Neovim\n󰇥 Yazi\n Nemo")
+options=" Foot\n Neovim\n󰇥 Yazi\n Nemo"
 selected_option=$(echo "$options" | fuzzel -d \
   -l 4 \
   -p "Root " \
   --config="$dir/fuzzel/fuzzel.ini")
-command=$(echo "$selected_option" | grep -o -E '[a-zA-Z]+')
+command=$(echo "$selected_option" | grep -o -E "[a-zA-Z]+")
 
-run_command $command
+run_command "$command"

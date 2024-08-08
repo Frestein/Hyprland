@@ -36,14 +36,14 @@ command -v fuzzel >/dev/null || {
 }
 
 # Get Link
-if [ -z "$1" ]; then
+if [ "$1" = "" ]; then
   link=$(wl-paste)
 else
   link="$1"
 fi
 
 # Check if link is empty
-if [ -z "$link" ]; then
+if [ "$link" = "" ]; then
   send_notify "Error: No link provided. Please provide a link as an argument or copy it to the clipboard."
   exit 1
 fi
@@ -62,13 +62,13 @@ fi
 echo "Link: $link"
 
 # Get Directory
-if [ -z "$2" ]; then
+if [ "$2" = "" ]; then
   # Add your own directories below
-  dirlist=$(find $HOME/Documents/Books $HOME /var/games -type d -maxdepth 1 ! -name '.*' 2>/dev/null)
-  dir=$(echo "$dirlist" | fuzzel -p "Download to: " $fuzzel_opts)
-  [ -z "$dir" ] && exit 1
+  dirlist=$(find "$HOME/Documents/Books" "$HOME" "/var/games" -type d -maxdepth 1 ! -name '.*' 2>/dev/null)
+  dir=$(echo "$dirlist" | eval "fuzzel -p 'Download to: ' $fuzzel_opts")
+  [ "$dir" = "" ] && exit 1
   if [ ! -d "$dir" ]; then
-    create_directory_option=$(printf "No\nYes" | fuzzel -p "$dir does not exist. Create it? " -l 2 $fuzzel_opts)
+    create_directory_option=$(echo "No\nYes" | eval "fuzzel -p '$dir does not exist. Create it? ' -l 2 $fuzzel_opts")
     if [ "$create_directory_option" = "Yes" ]; then
       mkdir -p "$dir" || {
         send_notify "Error: Failed to create directory '$dir'."
@@ -80,7 +80,7 @@ else
   dir="$2"
 fi
 
-[ -z "$dir" ] && exit 1
+[ "$dir" = "" ] && exit 1
 echo "Directory: $dir"
 cd "$dir" || {
   send_notify "Error: Failed to change directory to '$dir'."
@@ -91,10 +91,9 @@ cd "$dir" || {
 echo "$link\t$dir\t#$(date)" >>~/.downloader_history
 
 # Sort & Download
-yttest=$(yt-dlp -e --abort-on-error "$link" 2>/dev/null)
-if [ $? -eq 0 ]; then
+if yt-dlp -e --abort-on-error "$link" 2>/dev/null; then
   echo "Downloader: Youtube-dl"
-  type=$(echo "Video\nAudio" | fuzzel -p "Download Type: " -l 2 $fuzzel_opts)
+  type=$(echo "Video\nAudio" | eval "fuzzel -p 'Download Type: ' -l 2 $fuzzel_opts")
   if [ "$type" = "Video" ]; then
     send_notify "Starting video download..."
     file=$(yt-dlp -ic --add-metadata "$link" --abort-on-error --external-downloader aria2c --external-downloader-args "-x 16 -s 16 -k 1M" -o "%(title)s.%(ext)s" --get-filename --no-simulate)
@@ -104,11 +103,11 @@ if [ $? -eq 0 ]; then
   fi
 else
   send_notify "Starting download..."
-  aria2c "$link" -x 16 -s 16 -k 1M --seed-time 0 
+  aria2c "$link" -x 16 -s 16 -k 1M --seed-time 0
 fi
 
 # Notify if download was successful
-if [ -z "$file" ]; then
+if [ "$file" = "" ]; then
   notify-send "Error: No file was downloaded."
 elif [ -e "$dir/$file" ] && [ -s "$dir/$file" ]; then
   notify-send "Download completed: '$file'."
