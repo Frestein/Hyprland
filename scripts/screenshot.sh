@@ -49,11 +49,13 @@ shotnow() {
 
 shot5() {
   countdown 5
+  sleep 0.5
   shot screen
 }
 
 shot10() {
   countdown 10
+  sleep 0.5
   shot screen
 }
 
