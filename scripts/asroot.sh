@@ -1,6 +1,5 @@
 #!/bin/dash
 
-# River directory
 dir="$HOME/.config/hypr"
 
 # Export sudo askpass helper
