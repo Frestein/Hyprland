@@ -9,7 +9,7 @@ if [ -f "$state_file" ]; then
   makoctl dismiss -g
   hyprctl dispatch killactive
 else
-  notify-send -u low -h string:x-dunst-stack-tag:killactive 'You want to close the window?'
+  notify-send -u low -h string:x-dunst-stack-tag:killactive 'Do you want to close the window?'
   touch "$state_file"
   (sleep 2 && rm -f "$state_file") &
 fi
