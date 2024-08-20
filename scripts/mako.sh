@@ -2,5 +2,5 @@
 
 dir="$HOME/.config/hypr"
 
-[ "$(pidof mako)" = "" ] && mako --config="$dir/mako/config" &
+[ "$(pidof mako)" = "" ] && mako --config="$dir/mako/nord.ini" &
 [ "$(pidof mako)" != "" ] && makoctl reload &
