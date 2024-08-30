@@ -1,8 +1,8 @@
 #!/bin/dash
 
-STATE_FILE="$HOME/.zen_mode_state"
+state_file="$HOME/.zen_mode_state"
 
-if [ -f "$STATE_FILE" ]; then
+if [ -f "$state_file" ]; then
   hyprctl keyword general:gaps_in 5
   hyprctl keyword general:gaps_out 12
   hyprctl keyword decoration:rounding 6
@@ -12,7 +12,7 @@ if [ -f "$STATE_FILE" ]; then
 
   makoctl mode -r do-not-disturb
 
-  rm "$STATE_FILE"
+  rm "$state_file"
 else
   hyprctl keyword general:gaps_in 0
   hyprctl keyword general:gaps_out 0
@@ -23,5 +23,5 @@ else
 
   makoctl mode -a do-not-disturb
 
-  touch "$STATE_FILE"
+  touch "$state_file"
 fi
