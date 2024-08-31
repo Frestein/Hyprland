@@ -1,7 +1,7 @@
 #!/bin/dash
 
 color=$(hyprpicker)
-image="/tmp/${color}.png"
+image="/tmp/$color.png"
 
 if [ "$color" ]; then
   # Copy color code to clipboard
