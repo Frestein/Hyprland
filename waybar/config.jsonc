@@ -11,7 +11,7 @@
     "image#distro",
     "tray",
     "hyprland/workspaces",
-    "hyprland/window",
+    "hyprland/window"
   ],
   "modules-center": ["mpd"],
   "modules-right": [
@@ -24,12 +24,12 @@
     "hyprland/language",
     "idle_inhibitor",
     "clock",
-    "custom/power",
+    "custom/power"
   ],
   // Modules configuration
   "image#distro": {
     "path": "/home/frestein/Pictures/Logos/Arch-linux-logo.png",
-    "size": 14,
+    "size": 14
   },
   "hyprland/workspaces": {
     "disable-scroll": true,
@@ -45,21 +45,21 @@
       "6": "",
       "urgent": "",
       "focused": "",
-      "default": "",
-    },
+      "default": ""
+    }
   },
   "hyprland/language": {
     "format": " {short}",
-    "keyboard-name": "xremap",
+    "keyboard-name": "xremap"
   },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": " ",
-      "deactivated": " ",
+      "deactivated": " "
     },
     "tooltip-format-activated": "Idle: {status}",
-    "tooltip-format-deactivated": "Idle: {status}",
+    "tooltip-format-deactivated": "Idle: {status}"
   },
   "wireplumber": {
     "format": "{icon} {volume}%",
@@ -70,10 +70,10 @@
     "menu-file": "/home/frestein/.config/hypr/waybar/modules/jamesdsp_menu.xml",
     "menu-actions": {
       "default": "jamesdsp --load-preset Default",
-      "main": "jamesdsp --load-preset Main",
+      "main": "jamesdsp --load-preset Main"
     },
     "max-volume": 100,
-    "scroll-step": 1.0,
+    "scroll-step": 1.0
   },
   "mpd": {
     //"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title} ",
@@ -85,21 +85,21 @@
     "interval": 5,
     "exec-if": "pgrep mpd",
     "consume-icons": {
-      "on": " ",
+      "on": " "
     },
     "random-icons": {
       "off": "<span color=\"#f53c3c\"></span> ",
-      "on": " ",
+      "on": " "
     },
     "repeat-icons": {
-      "on": " ",
+      "on": " "
     },
     "single-icons": {
-      "on": "1 ",
+      "on": "1 "
     },
     "state-icons": {
       "paused": "",
-      "playing": "",
+      "playing": ""
     },
     "tooltip-format": "{artist} - {album} - {title}",
     "tooltip-format-disconnected": "MPD (disconnected)",
@@ -107,10 +107,10 @@
     "on-click": "mpc toggle",
     "on-click-right": "footclient --app-id 'foot-mp-flt'  ncmpcpp -s visualizer -S playlist",
     "on-scroll-up": "mpc next",
-    "on-scroll-down": "mpc prev",
+    "on-scroll-down": "mpc prev"
   },
   "tray": {
-    "spacing": 10,
+    "spacing": 10
   },
   "clock": {
     "format": "󱑎 {:%I:%M}",
@@ -127,23 +127,23 @@
         "days": "<span color='#ecc6d9'><b>{}</b></span>",
         "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
-      },
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
     },
     "actions": {
       "on-click-right": "mode",
       "on-click-forward": "tz_up",
       "on-click-backward": "tz_down",
       "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down",
-    },
+      "on-scroll-down": "shift_down"
+    }
   },
   "cpu": {
-    "format": " {usage}%",
+    "format": " {usage}%"
   },
   "memory": {
     "format": "  {}%",
-    "tooltip-format": "Swap: {swapPercentage}%",
+    "tooltip-format": "Swap: {swapPercentage}%"
   },
   "temperature": {
     //"thermal-zone": 2,
@@ -152,7 +152,7 @@
     //"format-critical": "{icon} {temperatureC}°C",
     "format": "{icon} {temperatureC}°C",
     "format-icons": ["", "", ""],
-    "tooltip-format": "CPU: {temperatureC}°C",
+    "tooltip-format": "CPU: {temperatureC}°C"
   },
   "network": {
     "format-wifi": " {essid} ({signalStrength}%)",
@@ -161,7 +161,7 @@
     "format-linked": "{ifname} (No IP)",
     "format-disconnected": "󱖣 Disconnected",
     "format-alt": "{ifname}: {ipaddr}/{cidr}",
-    "interval": 5,
+    "interval": 5
   },
   "custom/power": {
     "format": "⏻ ",
@@ -179,8 +179,8 @@
       "reboot": "systemctl reboot",
       //"suspend": "systemctl suspend",
       //"hibernate": "systemctl hibernate",
-      "shutdown": "systemctl poweroff",
-    },
+      "shutdown": "systemctl poweroff"
+    }
   },
   "custom/pacman": {
     "format": " {}",
@@ -189,6 +189,6 @@
     "exec": "checkupdates | wc -l",
     "exec-if": "exit 0",
     "on-click": "footclient sudo pacman -Syu; pkill -SIGRTMIN+8 waybar",
-    "signal": 8,
-  },
+    "signal": 8
+  }
 }
