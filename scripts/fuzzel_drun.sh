@@ -40,7 +40,7 @@ for _bindir in $_bindirs; do
 done
 
 if [ "$_lsdirs" != "" ]; then
-  _execfile=$(eval "find $_lsdirs -maxdepth 1 -type f -executable -printf '%f\n'" | sort | uniq | "$_fuzzel_exec" -d -p "󰜎 " --config="$dir/fuzzel/fuzzel.ini")
+  _execfile=$(eval "find $_lsdirs -maxdepth 1 -type f -executable -printf '%f\n'" | sort | uniq | "$_fuzzel_exec" -d -p "󰜎 " --counter --config="$dir/fuzzel/fuzzel.ini")
 
   [ "$_execfile" != "" ] || {
     echo "No executable was selected!"

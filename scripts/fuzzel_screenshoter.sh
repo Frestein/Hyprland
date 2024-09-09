@@ -66,7 +66,7 @@ hypr_dir="$HOME/.config/hypr"
 options=" Instant\n󰔛 Timer"
 selected_option=$(echo "$options" | fuzzel -d \
   -l 2 \
-  -p 'Screenshot type ' \
+  -p 'Screenshot ' \
   --config="$hypr_dir/fuzzel/fuzzel.ini")
 command=$(echo "$selected_option" | grep -o -E '[a-zA-Z]+')
 
