@@ -5,7 +5,7 @@ state_file="$HOME/.zen_mode_state"
 if [ -f "$state_file" ]; then
   hyprctl keyword general:gaps_in 5
   hyprctl keyword general:gaps_out 12
-  hyprctl keyword decoration:rounding 6
+  hyprctl keyword decoration:rounding 0
   hyprctl keyword animations:enabled true
 
   pkill -SIGUSR1 waybar
