@@ -11,7 +11,7 @@ border-radius=0
 max-icon-size=48
 
 ## Colors --------------------------------------------------
-background-color=#282828E6
+background-color=#282828FF
 text-color=#EBDBB2FF
 border-color=#928374FF
 
@@ -23,7 +23,6 @@ default-timeout=2000
 default-timeout=5000
 
 [urgency=critical]
-background-color=#282828E6
 text-color=#FB4934FF
 border-color=#FB4934FF
 default-timeout=0
