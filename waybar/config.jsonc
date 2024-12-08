@@ -188,7 +188,7 @@
     "interval": 3600,
     "exec": "checkupdates | wc -l",
     "exec-if": "exit 0",
-    "on-click": "footclient sudo pacman -Syu; pkill -SIGRTMIN+8 waybar",
+    "on-click": "footclient yay; pkill -SIGRTMIN+8 waybar",
     "signal": 8
   }
 }
