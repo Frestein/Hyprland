@@ -1,8 +1,8 @@
 #!/bin/dash
 
-HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
+HYPRZENMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
 
-if [ "$HYPRGAMEMODE" = 1 ]; then
+if [ "$HYPRZENMODE" = 1 ]; then
 	pkill -SIGUSR1 waybar
 	hyprctl --batch "\
         keyword animations:enabled 0;\
