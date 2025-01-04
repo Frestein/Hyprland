@@ -194,7 +194,7 @@
   },
   "custom/brightness": {
     "format": " {}%",
-    "tooltip-format": "Brightness: {}",
+    "tooltip-format": "Brightness: {}%",
     "exec": "ddcutil getvcp 10 | awk '{print $9}' | sed 's/,//'",
     "exec-if": "exit 0",
     "signal": 9

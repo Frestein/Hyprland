@@ -16,7 +16,7 @@ set_brightness() {
 	ddcutil setvcp 10 "$new_brightness" && notify_user
 }
 
-new_brightness=$(fuzzel -d -w 32 --anchor top --y-margin 20 --prompt-only "Enter new brightness (0-100): " --config="$dir/fuzzel/fuzzel.ini")
+new_brightness=$(fuzzel -d -w 22 --anchor top --y-margin 20 --prompt-only "Brightness (0-100): " --config="$dir/fuzzel/fuzzel.ini")
 
 # Check if input is a valid number and within range
 if [ "$new_brightness" != "" ]; then
