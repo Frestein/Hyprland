@@ -195,7 +195,6 @@
   "custom/brightness": {
     "format": " {}%",
     "tooltip-format": "Brightness: {}",
-    "interval": 60,
     "exec": "ddcutil getvcp 10 | awk '{print $9}' | sed 's/,//'",
     "exec-if": "exit 0",
     "signal": 9
