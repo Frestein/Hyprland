@@ -17,6 +17,7 @@
   "modules-right": [
     "custom/pacman",
     "wireplumber",
+	"custom/brightness",
     "network",
     "cpu",
     "memory",
@@ -147,7 +148,7 @@
   },
   "temperature": {
     //"thermal-zone": 2,
-    //"hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
     "critical-threshold": 80,
     //"format-critical": "{icon} {temperatureC}°C",
     "format": "{icon} {temperatureC}°C",
@@ -190,5 +191,13 @@
     "exec-if": "exit 0",
     "on-click": "footclient yay; pkill -SIGRTMIN+8 waybar",
     "signal": 8
+  },
+  "custom/brightness": {
+    "format": " {}%",
+    "tooltip-format": "Brightness: {}",
+    "interval": 60,
+    "exec": "ddcutil getvcp 10 | awk '{print $9}' | sed 's/,//'",
+    "exec-if": "exit 0",
+    "signal": 9
   }
 }
