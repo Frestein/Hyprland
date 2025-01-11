@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/env dash
 
 players="spotify mpd mpv firefox"
 

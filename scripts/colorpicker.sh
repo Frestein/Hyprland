@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/env dash
 
 color=$(hyprpicker)
 image="/tmp/$color.png"

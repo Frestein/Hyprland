@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/env dash
 
 dir="$HOME/.config/hypr"
 notify_cmd='notify-send -u low -h string:x-dunst-stack-tag:brightness'

@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/env dash
 
 HYPRZENMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
 

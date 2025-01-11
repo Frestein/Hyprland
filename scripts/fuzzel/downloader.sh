@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/env dash
 # A fuzzel utility to download files from various sites & types
 #
 # Requirements:

@@ -1,8 +1,8 @@
-#!/bin/dash
+#!/bin/env dash
 
-time=$(date +%Y-%m-%d_%H:%M:%S)
+datetime=$(date +%m-%d-%Y-%H:%M:%S)
 screenshots_dir="$(xdg-user-dir PICTURES)/Screenshots"
-file="Screenshot_${time}.png"
+file="screenshot-${datetime}.png"
 
 if [ ! -d "$screenshots_dir" ]; then
 	mkdir -p "$screenshots_dir"

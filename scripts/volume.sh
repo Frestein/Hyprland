@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/env dash
 
 icon_dir='/usr/share/archcraft/icons/dunst'
 notify_cmd='notify-send -u low -h string:x-dunst-stack-tag:volume'

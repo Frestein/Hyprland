@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/env dash
 
 sleep 1
 
