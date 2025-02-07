@@ -19,7 +19,7 @@ shot() {
 	mode="$1"
 	shift
 	extra_args="$*"
-	hyprshot -m "$mode" --raw --freeze "$extra_args" | satty --filename - --output-filename "$screenshots_dir/$file"
+	hyprshot -m "$mode" -F ppm --raw --freeze "$extra_args" | satty --filename - --output-filename "$screenshots_dir/$file"
 }
 
 shotnow() {
