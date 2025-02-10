@@ -15,7 +15,6 @@
   ],
   "modules-center": ["mpd"],
   "modules-right": [
-    "custom/pacman",
     "wireplumber",
     "custom/brightness",
     "network",
@@ -187,15 +186,6 @@
       //"hibernate": "systemctl hibernate",
       "shutdown": "systemctl poweroff"
     }
-  },
-  "custom/pacman": {
-    "format": " {}",
-    "tooltip-format": "Updates: {}",
-    "interval": 3600,
-    "exec": "checkupdates | wc -l",
-    "exec-if": "exit 0",
-    "on-click": "footclient yay; pkill -SIGRTMIN+8 waybar",
-    "signal": 8
   },
   "custom/brightness": {
     "format": " {}%",
