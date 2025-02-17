@@ -1,9 +1,0 @@
-background-color=#282828FF
-text-color=#EBDBB2FF
-border-color=#928374FF
-
-[urgency=critical]
-text-color=#FB4934FF
-border-color=#FB4934FF
-
-# vim:ft=dosini

@@ -5,7 +5,7 @@ dir="$HOME/.config/hypr"
 run_command() {
   case "$1" in
   "Logout")
-    hyprctl dispatch exit
+	hyprctl dispatch exec 'uwsm stop'
     ;;
   "Lock")
     hyprlock
