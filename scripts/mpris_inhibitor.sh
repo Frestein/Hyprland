@@ -1,6 +1,6 @@
 #!/bin/env dash
 
-players="spotify mpd mpv firefox"
+players="spotify mpd mpv firefox chromium YoutubeMusic"
 
 for player in $players; do
   if playerctl -p "$(playerctl --list-all | grep "$player")" status | grep -q "Playing"; then
