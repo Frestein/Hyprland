@@ -1,29 +1,22 @@
 #!/bin/env dash
 
 dir="$HOME/.config/hypr"
-notify_cmd='notify-send -u low -h string:x-dunst-stack-tag:brightness'
 
 get_brightness() {
-	ddcutil getvcp 10 | awk '{print $9}' | sed 's/,//'
-}
-
-notify_user() {
-	eval "$notify_cmd 'Brightness: $(get_brightness)%'"
+	ddcutil getvcp 10 | awk '/current/ {gsub(/,/, "", $9); print $9}'
 }
 
 set_brightness() {
-	new_brightness="$1"
-	ddcutil setvcp 10 "$new_brightness" && notify_user
+	ddcutil setvcp 10 "$1" && echo "$1" >"$WOBSOCK" && pkill -SIGRTMIN+9 waybar
 }
 
-new_brightness=$(fuzzel -d -w 15 --anchor top --y-margin 20 --prompt-only "Brightness " --config="$dir/fuzzel/fuzzel.ini")
+new_brightness=$(fuzzel -d -w 15 --anchor top --y-margin 20 \
+	--prompt-only "Brightness " --config="$dir/fuzzel/fuzzel.ini")
 
-# Check if input is a valid number and within range
 if [ "$new_brightness" != "" ]; then
-	if [ "$new_brightness" -ge 0 ] && [ "$new_brightness" -le 100 ]; then
+	if [ "$new_brightness" -ge 0 ] && [ "$new_brightness" -le 100 ] 2>/dev/null; then
 		set_brightness "$new_brightness"
-		pkill -SIGRTMIN+9 waybar
 	else
-		notify-send -u low -h string:x-dunst-stack-tag:brightness "Invalid input."
+		get_brightness >"$WOBSOCK"
 	fi
 fi

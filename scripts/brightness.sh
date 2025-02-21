@@ -1,32 +1,35 @@
 #!/bin/env dash
 
-notify_cmd='notify-send -u low -h string:x-dunst-stack-tag:brightness'
-
 get_brightness() {
-	ddcutil getvcp 10 | awk '{print $9}' | sed 's/,//'
+	ddcutil getvcp 10 | awk '/current/ {gsub(/,/, "", $9); print $9}'
 }
 
-notify_user() {
-	eval "$notify_cmd 'Brightness: $(get_brightness)%'"
+update_brightness() {
+	brightness=$(get_brightness)
+	echo "$brightness" >"$WOBSOCK"
+	pkill -SIGRTMIN+9 waybar
 }
 
 inc_brightness() {
-	ddcutil setvcp 10 + 25 && notify_user
+	ddcutil setvcp 10 + 25 && update_brightness
 }
 
 dec_brightness() {
-	ddcutil setvcp 10 - 25 && notify_user
+	ddcutil setvcp 10 - 25 && update_brightness
 }
 
-# Execute accordingly
-if [ "$1" = "--get" ]; then
+case "$1" in
+--get)
 	get_brightness
-elif [ "$1" = "--inc" ]; then
+	;;
+--inc)
 	inc_brightness
-	pkill -SIGRTMIN+9 waybar
-elif [ "$1" = "--dec" ]; then
+	;;
+--dec)
 	dec_brightness
-	pkill -SIGRTMIN+9 waybar
-else
-	echo "$(get_brightness)"% && notify_user
-fi
+	;;
+*)
+	echo "$(get_brightness)%"
+	update_brightness
+	;;
+esac
