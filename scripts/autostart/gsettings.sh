@@ -1,13 +1,22 @@
 #!/bin/env dash
 
 config="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-3.0/settings.ini"
-if [ ! -f "$config" ]; then
-  exit 1
-fi
-
 gnome_schema="org.gnome.desktop.interface"
-icon_theme="$(grep 'gtk-icon-theme-name' "$config" | sed 's/.*\s*=\s*//')"
-font_name="$(grep 'gtk-font-name' "$config" | sed 's/.*\s*=\s*//')"
-gsettings set "$gnome_schema" icon-theme "$icon_theme"
-gsettings set "$gnome_schema" font-name "$font_name"
-gsettings set org.gnome.desktop.wm.preferences button-layout "" # Remove window buttons
+
+[ ! -f "$config" ] && exit 1
+
+command -v gsettings >/dev/null 2>&1 || exit 1
+
+get_key() {
+	key="$1"
+	sed -n "s/^[[:space:]]*${key}[[:space:]]*=[[:space:]]*['\"]*\([^'\"]*\)['\"]*/\1/p" "$config" | head -n1
+}
+
+font_name=$(get_key "gtk-font-name")
+icon_theme=$(get_key "gtk-icon-theme-name")
+
+[ -n "$icon_theme" ] && gsettings set "$gnome_schema" icon-theme "$icon_theme"
+[ -n "$font_name" ] && gsettings set "$gnome_schema" font-name "$font_name"
+
+# Remove window buttons
+gsettings set org.gnome.desktop.wm.preferences button-layout "" 
