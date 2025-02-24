@@ -1,5 +1,16 @@
-#!/bin/env dash
+#!/usr/bin/env dash
 
-dir="$HOME/.config/hypr"
+LOCK_FILE="/tmp/killactive.lock"
+TIMEOUT=300
 
-[ "$(printf "Yes\nNo" | fuzzel -d -w 16 -l 2 --config="$dir/fuzzel/fuzzel.ini" -p "Close Window? ")" = "Yes" ] && hyprctl dispatch killactive
+if [ -f "$LOCK_FILE" ]; then
+	rm -f "$LOCK_FILE"
+	hyprctl dispatch killactive
+	exit 0
+fi
+
+touch "$LOCK_FILE"
+(
+	sleep "$(echo "$TIMEOUT / 1000" | bc -l)"
+	rm -f "$LOCK_FILE"
+) &
