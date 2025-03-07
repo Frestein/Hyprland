@@ -12,7 +12,7 @@ window=$(jq -r '.[] | select(.monitor != -1 ) | "\(.address)\t\(.workspace.name)
     column -t -s $'\t' |
     sed -e "s|$current_addr|focused ->|" -e 's|@icon@|\x0icon\x1f|' |
     sort -r |
-    fuzzel --dmenu --prompt "Windows " --width 80 --config="$XDG_CONFIG_HOME/hypr/fuzzel/fuzzel.ini")
+    fuzzel -d -p "Windows " -w 120 --config="$XDG_CONFIG_HOME/hypr/fuzzel/fuzzel.ini")
 
 addr=$(awk '{print $1}' <<<"$window")
 ws=$(awk '{print $2}' <<<"$window")
