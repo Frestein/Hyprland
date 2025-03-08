@@ -1,10 +1,8 @@
-#!/bin/env dash
-
-dir="$HOME/.config/hypr"
+#!/usr/bin/env dash
 
 ANDROID_HOME="$HOME/Projects/android/sdk"
 
-FUZZEL_IGNORED_BINDIRS="$HOME/.config/qtile/scripts:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin"
+FUZZEL_IGNORED_BINDIRS="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin"
 
 exit_err() {
   echo "$1" >&2
@@ -40,7 +38,7 @@ for _bindir in $_bindirs; do
 done
 
 if [ "$_lsdirs" != "" ]; then
-  _execfile=$(eval "find $_lsdirs -maxdepth 1 -type f -executable -printf '%f\n'" | sort | uniq | "$_fuzzel_exec" -d -p "󰜎 " --counter --config="$dir/fuzzel/fuzzel.ini")
+  _execfile=$(eval "find $_lsdirs -maxdepth 1 -type f -executable -printf '%f\n'" | sort | uniq | "$_fuzzel_exec" -d -p "󰜎 " --counter)
 
   [ "$_execfile" != "" ] || {
     echo "No executable was selected!"
