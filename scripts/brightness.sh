@@ -1,35 +1,35 @@
-#!/bin/env dash
+#!/usr/bin/env dash
 
 get_brightness() {
-	ddcutil getvcp 10 | awk '/current/ {gsub(/,/, "", $9); print $9}'
+    ddcutil getvcp 10 | awk '/current/ {gsub(/,/, "", $9); print $9}'
 }
 
 update_brightness() {
-	brightness=$(get_brightness)
-	echo "$brightness" >"$WOBSOCK"
-	pkill -SIGRTMIN+9 waybar
+    brightness=$(get_brightness)
+    echo "$brightness" >"$WOBSOCK"
+    pkill -SIGRTMIN+9 waybar
 }
 
 inc_brightness() {
-	ddcutil setvcp 10 + 25 && update_brightness
+    ddcutil setvcp 10 + 25 && update_brightness
 }
 
 dec_brightness() {
-	ddcutil setvcp 10 - 25 && update_brightness
+    ddcutil setvcp 10 - 25 && update_brightness
 }
 
 case "$1" in
 --get)
-	get_brightness
-	;;
+    get_brightness
+    ;;
 --inc)
-	inc_brightness
-	;;
+    inc_brightness
+    ;;
 --dec)
-	dec_brightness
-	;;
+    dec_brightness
+    ;;
 *)
-	echo "$(get_brightness)%"
-	update_brightness
-	;;
+    echo "$(get_brightness)%"
+    update_brightness
+    ;;
 esac

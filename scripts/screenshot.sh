@@ -1,4 +1,4 @@
-#!/bin/env dash
+#!/usr/bin/env dash
 
 SCREENSHOTS_DIR="$(xdg-user-dir PICTURES)/Screenshots"
 NOTIFY_CMD="notify-send -h string:x-dunst-stack-tag:screenshot"

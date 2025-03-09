@@ -1,7 +1,7 @@
-#!/bin/env dash
+#!/usr/bin/env dash
 
-dir="$HOME/.config/hypr"
+hypr="$XDG_CONFIG_HOME/hypr"
 
-"$dir/scripts/mpris_inhibitor.sh" || exit 1
+"$hypr/scripts/mpris_inhibitor.sh" || exit 1
 
 hyprctl dispatch dpms off
