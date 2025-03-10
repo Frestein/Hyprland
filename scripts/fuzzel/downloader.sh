@@ -64,7 +64,7 @@ echo "Link: $link"
 # Get Directory
 if [ "$2" = "" ]; then
     # Add your own directories below
-    dirlist=$(find "$HOME/Documents/Books" "$HOME" "/var/games" -type d -maxdepth 2 ! -name '.*' 2>/dev/null)
+    dirlist=$(find -L "$HOME/Documents/Books" "$HOME" "/var/games" -type d -maxdepth 2 ! -name '.*' 2>/dev/null)
     dir=$(echo "$dirlist" | eval "fuzzel -p 'Download to: ' $fuzzel_defaults")
     [ "$dir" = "" ] && exit 1
     if [ ! -d "$dir" ]; then
