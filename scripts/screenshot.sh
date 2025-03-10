@@ -2,7 +2,7 @@
 
 SCREENSHOTS_DIR="$(xdg-user-dir PICTURES)/Screenshots"
 NOTIFY_CMD="notify-send -h string:x-dunst-stack-tag:screenshot"
-DATE_FORMAT="%Y-%m-%d_%H-%M-%S"
+DATE_FORMAT="C%H.%M.%S-D%m.%d.%Y"
 HYPRSHOT_OPTS="-F ppm --raw --freeze"
 DEFAULT_DISPLAY="HDMI-A-2"
 MAX_DELAY=9
@@ -29,7 +29,7 @@ capture() {
 	local extra_args="${2:-}"
 	local timestamp
 	timestamp=$(date +"$DATE_FORMAT")
-	local file="$SCREENSHOTS_DIR/screenshot-${timestamp}.png"
+	local file="$SCREENSHOTS_DIR/${timestamp}.png"
 
 	hyprshot -m "$mode" $HYPRSHOT_OPTS "$extra_args" | satty --filename - --output-filename "$file"
 }
